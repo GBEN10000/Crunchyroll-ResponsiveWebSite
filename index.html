@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crunchyroll</title>
+  <link rel="icon" type="image/png" href="title logo.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #141414;
+      color: white;
+    }
+
+    .navbar {
+      background-color: #23252b;
+      color: white;
+      height: 60px;
+    }
+
+    .hero {
+      position: relative;
+      color: white;
+      height: 629px;
+      overflow: hidden;
+    }
+
+    .hero-image {
+      background-size: cover;
+      background-position: center;
+      transition: background-image 0.5s ease-in-out;
+      height: 100%;
+    }
+    @media (max-width: 576px) {
+  .hero {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-image {
+    height: 300px; /* or 100vh for full screen */
+    width: 100%;
+  }
+
+  .hero .col-md-6 {
+    width: 100%;
+  }
+}
+
+
+    .btn-orange {
+      background-color: #ff6600;
+      color: rgb(0, 0, 0);
+      font-weight: bold;
+      border: none;
+      padding: 10px 20px;
+      text-transform: uppercase;
+    }
+
+    .btn-orange:hover,
+    .fixed-watch-button:hover {
+      background-color: #e65c00;
+    }
+    
+
+
+    .fixed-watch-button {
+      position: fixed;
+      bottom: 135px;
+      left: 65px;
+      background-color: #ff6600;
+      color: black;
+      font-weight: bold;
+      border: none;
+      padding: 7px 20px;
+      text-transform: uppercase;
+      z-index: 999;
+    }
+
+    .progress-indicator {
+      display: flex;
+      gap: 10px;
+      position: absolute;
+      bottom: 20px;
+      left: 50px;
+      z-index: 3;
+    }
+
+    .dot {
+      width: 40px;
+      height: 10px;
+      background-color: #777;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .dot.active {
+      background-color: #ff6600;
+    }
+
+    .premium-popup {
+      position: absolute;
+      top: 50px;
+      right: 20px;
+      background-color: black;
+      color: white;
+      padding: 15px;
+      width: 350px;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      display: none;
+      transition: opacity 0.3s ease-in-out;
+      z-index: 10;
+    }
+
+    .try-premium:hover + .premium-popup {
+      display: block;
+    }
+
+    #anime-title {
+      transition: opacity 0.4s ease-in-out;
+      opacity: 1;
+    }
+
+    #anime-title.fade-out {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <img src="logo.png" width="137px" alt="Crunchyroll" class="ms-2" />
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-3">
+          <li class="nav-item"><a class="nav-link" style="font-weight:500; color:beige;" href="#">New</a></li>
+          <li class="nav-item"><a class="nav-link" style="font-weight:500; color:beige;" href="#">Popular</a></li>
+          <li class="nav-item"><a class="nav-link" style="font-weight:500; color:beige;" href="#">Simulcast</a></li>
+          <li class="nav-item"><a class="nav-link" style="font-weight:500; color:beige;" href="#">Categories</a></li>
+          <li class="nav-item"><a class="nav-link" style="font-weight:lighter; color:rgb(75, 75, 71);" href="#">|</a></li>
+          <li class="nav-item"><a class="nav-link" style="font-weight:500; color:beige;" href="#">Games</a></li>
+          <li class="nav-item"><a class="nav-link" style="font-weight:500; color:beige;" href="#">News</a></li>
+        </ul>
+      </div>
+
+      <div class="position-relative me-3">
+        <div class="try-premium" style="cursor: pointer">TRY FREE PREMIUM</div>
+        <div class="premium-popup">
+          <h3>👑 7-Day Free Trial</h3>
+          <p>
+            Premium access includes unlimited anime, no ads, and new episodes
+            shortly after they air in Japan. Try it now!
+          </p>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+<div class="hero container-fluid p-0">
+  <div class="row flex-column flex-md-row h-100">
+    
+    <!-- Image Column (first on mobile, second on desktop) -->
+    <div class="col-md-6 hero-image order-1 order-md-2" id="hero-image"></div>
+
+    <!-- Text Column -->
+    <div class="col-md-6 d-flex align-items-center ps-5 z-2 order-2 order-md-1" style="background: linear-gradient(to right, black 100%, rgb(0, 0, 0) 35%, rgba(0, 0, 0, 0) 100%);">
+      <div>
+        <!-- Title -->
+        <h1 id="anime-title" >Solo Leveling</h1>
+
+        <!-- Description -->
+        <p id="anime-desc" style=" padding:0px 0px 5px 27px ; color: #777; font-size: 15px; font-weight:570;">Sub | Dub • Action, Adventure, Fantasy</p>
+
+        <!-- Detailed Text -->
+        <p id="anime-text" class="text-white" style="width: 70%; padding:0px 0px 20px 27px ;">
+          They say whatever doesn’t kill you makes you stronger, but that’s not the case for the world’s weakest hunter Sung Jinwoo...
+        </p>
+
+        <!-- Button -->
+        <button class="fixed-watch-button d-none d-md-block mt-3">
+          <img src="https://cdn-icons-png.flaticon.com/128/13/13021.png" width="20" height="20" style="margin-right: 8px; vertical-align: middle;" />
+          Start Watching S1 E1
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Progress Dots -->
+    <div class="progress-indicator">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    const slides = [
+      {
+        image: "solo.jpg",
+        title: '<img src="https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=600/CurationAssets/Solo%20Leveling/SEASON%202/ULTRA-WIDE/SoloLeveling-S2-KV1-UW-Logo.png" alt="Solo Leveling" style="width: 50%;" />',
+        desc: "Sub | Dub • Action, Adventure, Fantasy",
+        text: "They say whatever doesn’t kill you makes you stronger, but that’s not the case for the world’s weakest hunter Sung Jinwoo..."
+      },
+      {
+        image: "windbreaker.jpg",
+        title: '<img src="https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=600/CurationAssets/WIND%20BREAKER/SEASON%201/ULTRA-WIDE/WindBreaker-S1-KV1-UW-Logo.png" alt="Wind Breaker" style="width: 50%;" />',
+        desc:  "Sub | Dub • Action, Adventure",
+        text: "They protect their town, their friends, and their pride. Meet the toughest delinquents with a heart in Wind Breaker."
+      },
+      {
+        image: "blackbutler.jpg",
+        title: '<img src="https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=600/CurationAssets/I%20Left%20my%20A-Rank%20Party/SEASON%201/ULTRA-WIDE/ILeftMyARankParty-S1-KV1-UW-Logo-EN.png" alt="A Rank Party" style="width:50%";"/>',
+        desc: "Sub | Dub • Action, Fantasy",
+        text: "Not every party treats you like a hero—especially when you’re a lowly red mage like Yuke..."
+      }
+    ];
+
+    let current = 0;
+    const dots = document.querySelectorAll(".dot");
+    const heroImage = document.getElementById("hero-image");
+    const animeTitle = document.getElementById("anime-title");
+    const animeDesc = document.getElementById("anime-desc");
+    const animeText = document.getElementById("anime-text");
+
+    function updateSlide() {
+      const slide = slides[current % slides.length];
+
+      animeTitle.classList.add("fade-out");
+
+      setTimeout(() => {
+        heroImage.style.backgroundImage = `url(${slide.image})`;
+        animeTitle.innerHTML = slide.title;
+        animeDesc.innerText = slide.desc;
+        animeText.innerText = slide.text;
+
+        animeTitle.classList.remove("fade-out");
+      }, 300);
+
+      dots.forEach((dot, i) =>
+        dot.classList.toggle("active", i === current % slides.length)
+      );
+    }
+
+    updateSlide();
+    setInterval(() => {
+      current = (current + 1) % slides.length;
+      updateSlide();
+    }, 4000);
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
