@@ -5,104 +5,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Crunchyroll</title>
   <link rel="icon" type="image/png" href="title logo.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style>
     body {
-      background-color: #141414;
+      background-color: black;
       color: white;
     }
-
     .navbar {
       background-color: #23252b;
-      color: white;
       height: 60px;
     }
-
     .hero {
       position: relative;
-      color: white;
-      height: 629px;
+      height: 1200px;
       overflow: hidden;
-    }
-
-    .hero-image {
       background-size: cover;
       background-position: center;
+      background-repeat: no-repeat;
       transition: background-image 0.5s ease-in-out;
-      height: 100%;
     }
-    @media (max-width: 576px) {
-  .hero {
-    height: auto;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .hero-image {
-    height: 300px; /* or 100vh for full screen */
-    width: 100%;
-  }
-
-  .hero .col-md-6 {
-    width: 100%;
-  }
-}
-
-
+    .hero-content {
+      position: absolute;
+      top: 25%;
+      left: 30px;
+      width: 37%;
+      transform: translateY(-50%);
+      z-index: 2;
+    }
     .btn-orange {
-      background-color: #ff6600;
-      color: rgb(0, 0, 0);
-      font-weight: bold;
-      border: none;
-      padding: 10px 20px;
-      text-transform: uppercase;
-    }
-
-    .btn-orange:hover,
-    .fixed-watch-button:hover {
-      background-color: #e65c00;
-    }
-    
-
-
-    .fixed-watch-button {
-      position: fixed;
-      bottom: 135px;
-      left: 65px;
       background-color: #ff6600;
       color: black;
       font-weight: bold;
       border: none;
-      padding: 7px 20px;
+      padding: 10px 20px;
       text-transform: uppercase;
-      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
     }
-
+    .btn-orange:hover {
+      background-color: #e65c00;
+    }
     .progress-indicator {
       display: flex;
       gap: 10px;
       position: absolute;
-      bottom: 20px;
-      left: 50px;
+      top: 45%;
+      left: 5%;
       z-index: 3;
     }
-
     .dot {
-      width: 40px;
+      width: 25px;
       height: 10px;
       background-color: #777;
       border-radius: 5px;
       transition: background-color 0.3s;
     }
-
     .dot.active {
       background-color: #ff6600;
     }
-
     .premium-popup {
       position: absolute;
-      top: 50px;
-      right: 20px;
+      top: 40px;
+      right: 0;
+      left: auto;
+      transform: none;
       background-color: black;
       color: white;
       padding: 15px;
@@ -113,154 +82,473 @@
       transition: opacity 0.3s ease-in-out;
       z-index: 10;
     }
-
-    .try-premium:hover + .premium-popup {
-      display: block;
-    }
-
     #anime-title {
       transition: opacity 0.4s ease-in-out;
       opacity: 1;
     }
+    .anime-section {
+      margin: 4.5%;
+      padding-top: 40%;
+      position: relative;
+    }
+    .anime-section-2 {
+      margin: 4.5%;
+      position: relative;
+      background-color: black;
+    }
+    .anime-grid {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 30px;
+      padding-bottom: 10px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+    }
+    .anime-card {
+      flex: 0 0 auto;
+      width: 250px;
+      text-align: center;
+    }
+    .anime-card img {
+      width: 100%;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+    .anime-card h3 {
+      margin: 10px 0 5px;
+      font-size: 1.1rem;
+    }
+    .anime-card span {
+      font-size: 0.9rem;
+      color: #bbb;
+    }
+    .anime-grid::-webkit-scrollbar {
+      height: 8px;
+      display: none;
+    }
+    .anime-grid::-webkit-scrollbar-track {
+      background-color: #141414;
+    }
+    .hero {
+      background-image: url('images/hero-full.jpg');
+    }
+    .mobile-start-btn {
+      display: none; /* Hidden by default (visible only on mobile) */
+    }
 
-    #anime-title.fade-out {
-      opacity: 0;
+    /* Navbar Icon Styling */
+    .nav-icon {
+      color: white;
+      font-size: 1.5rem;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-icon:hover {
+      color: #ff6600;
+    }
+    .premium-btn {
+      background-color: #ff6600;
+      color: black;
+      padding: 5px 10px;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: bold;
+    }
+    .premium-btn:hover {
+      background-color: #e65c00;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .hero {
+        height: 600px;
+        background-image: url('crunchyrollImgs/solomobile.jpg');
+        position: relative;
+      }
+      .hero-content {
+        display: none; /* Hide hero content on mobile */
+      }
+      .anime-section {
+        display: none; /* Hide anime section on mobile */
+      }
+      .progress-indicator {
+        top: 85%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .mobile-start-btn {
+        display: flex; /* Show button on mobile */
+        position: absolute;
+        bottom: 40px; /* Adjusted for better spacing */
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 3;
+        padding: 8px 16px;
+        font-size: 0.9rem;
+      }
+      .anime-section-2 {
+        margin: 20px 10px;
+      }
+      .premium-popup {
+        width: 90%;
+        right: 5%;
+        top: 60px;
+      }
+      .premium-btn, .nav-icon {
+        display: none; /* Hide icons on mobile */
+      }
+      .premium-popup {
+        display: none !important; /* Ensure popup is hidden on mobile */
+      }
+    }
+
+    /* Desktop-Specific Button Positioning */
+    @media (min-width: 769px) {
+      .hero-content .btn-orange {
+        position: relative; /* Align within hero-content */
+        left: 0;
+        margin-top: 30px; /* Consistent spacing */
+      }
+      .premium-btn, .nav-icon {
+        display: inline-flex; /* Show on desktop */
+      }
+    }
+
+    /* Footer Styles */
+    .footer-top {
+      background-color: black;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .footer-kitty {
+      width: 250px;
+      margin-bottom: 20px;
+    }
+    .footer-headline {
+      font-size: 19px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .view-all-btn {
+      margin-top: 10px;
+      padding: 5px 25px;
+      border: 1px solid orange;
+      background: transparent;
+      color: orange;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 3px;
+    }
+    .footer-main {
+      background-color: black;
+      color: white;
+      padding: 40px 15px;
+      font-family: sans-serif;
+    }
+    .footer-bottom {
+      border-top: 1px solid #333;
+      margin-top: 30px;
+      padding-top: 20px;
+      font-size: 13px;
+      color: #999;
+      margin-left: 10%;
+      margin-right: 10%;
+    }
+    .footer-description {
+      margin-top: 20px;
+      color: #999;
+      font-size: 13px;
+      line-height: 1.6;
     }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container-fluid">
-      <img src="logo.png" width="137px" alt="Crunchyroll" class="ms-2" />
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container-fluid px-3">
+      <a class="navbar-brand" href="#"><img src="logo.png" width="137px" alt="Crunchyroll" /></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
-
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-3">
-          <li class="nav-item"><a class="nav-link" style="font-weight:500; color:beige;" href="#">New</a></li>
-          <li class="nav-item"><a class="nav-link" style="font-weight:500; color:beige;" href="#">Popular</a></li>
-          <li class="nav-item"><a class="nav-link" style="font-weight:500; color:beige;" href="#">Simulcast</a></li>
-          <li class="nav-item"><a class="nav-link" style="font-weight:500; color:beige;" href="#">Categories</a></li>
-          <li class="nav-item"><a class="nav-link" style="font-weight:lighter; color:rgb(75, 75, 71);" href="#">|</a></li>
-          <li class="nav-item"><a class="nav-link" style="font-weight:500; color:beige;" href="#">Games</a></li>
-          <li class="nav-item"><a class="nav-link" style="font-weight:500; color:beige;" href="#">News</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">New</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">Popular</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">Simulcast</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">Categories</a></li>
+          <li class="nav-item"><a class="nav-link text-secondary" href="#">|</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">Games</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">News</a></li>
         </ul>
-      </div>
-
-      <div class="position-relative me-3">
-        <div class="try-premium" style="cursor: pointer">TRY FREE PREMIUM</div>
-        <div class="premium-popup">
-          <h3>👑 7-Day Free Trial</h3>
-          <p>
-            Premium access includes unlimited anime, no ads, and new episodes
-            shortly after they air in Japan. Try it now!
-          </p>
+        <div class="ms-auto d-flex align-items-center position-relative me-3">
+          <!-- Try Free Premium -->
+          <div>
+            <a href="#" class="nav-icon mx-2" aria-label="Search">
+                <img src="https://img.icons8.com/?size=100&id=bVB91ntF0Bzd&format=png&color=000000" width="20" height="20" alt="Search" />
+            </a>         
+          </div>
+          <div>
+            <p style="color: #6bf708; font-size: x-small; margin: 0; padding: 0;">TRY FREE</p>
+            <p style="font-size: x-small; margin: 0; padding: 0;">PREMIUM</p>
+          </div>
+          <!-- Premium Popup -->
+          <div class="premium-popup">
+            <h3>👑 7-Day Free Trial</h3>
+            <p>Premium access includes unlimited anime, no ads, and new episodes shortly after they air in Japan. Try it now!</p>
+          </div>
+          <!-- Search Icon (Icons8) -->
+          <a href="#" class="nav-icon mx-2" aria-label="Search" style="padding-left: 7%;">
+            <img src="https://img.icons8.com/?size=100&id=132&format=png&color=FFFFFF" width="24" height="24" alt="Search" />
+          </a>
+          <!-- Bookmarks Icon -->
+          <a href="#" class="nav-icon mx-2" aria-label="Bookmarks" style="padding-left: 4%;">
+            <img src="https://img.icons8.com/?size=100&id=gjG2n7mGwI9D&format=png&color=FFFFFF" width="21" height="21" alt="bookmarks" />
+          </a>
+          <!-- User Menu Icon -->
+          <a href="#" class="nav-icon mx-2" aria-label="User" style="padding-left: 4%;">
+            <img src="https://img.icons8.com/?size=100&id=zxB19VPoVLjK&format=png&color=FFFFFF" width="24" height="24" alt="User" />
+          </a>
         </div>
       </div>
     </div>
-  </nav>
+</nav>
 
-  <!-- Hero Section -->
-<div class="hero container-fluid p-0">
-  <div class="row flex-column flex-md-row h-100">
-    
-    <!-- Image Column (first on mobile, second on desktop) -->
-    <div class="col-md-6 hero-image order-1 order-md-2" id="hero-image"></div>
+<!-- Hero Section -->
+<div class="hero" id="hero-image" style="background-image: url('crunchyrollImgs/SoloLeveling-cropped.png');">
+  <div class="hero-content ps-md-5">
+    <h1 id="anime-title">Solo Leveling</h1>
+    <p id="anime-desc">Sub | Dub • Action, Adventure, Fantasy</p>
+    <p id="anime-text" class="w-md-50">They say whatever doesn’t kill you makes you stronger, but that’s not the case for the world’s weakest hunter Sung Jinwoo...</p>
+    <button class="btn-orange mt-3">
+      <img src="https://cdn-icons-png.flaticon.com/128/13/13021.png" width="20" height="20" style="margin-right: 8px; vertical-align: middle;" />
+      Start Watching S1 E1
+    </button>
+  </div>
+  <!-- Mobile Start Watching Button -->
+  <button class="btn-orange mobile-start-btn">
+    <img src="https://cdn-icons-png.flaticon.com/128/13/13021.png" width="20" height="20" style="margin-right: 8px;" />
+    Start Watching
+  </button>
+  <div class="progress-indicator" id="dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
 
-    <!-- Text Column -->
-    <div class="col-md-6 d-flex align-items-center ps-5 z-2 order-2 order-md-1" style="background: linear-gradient(to right, black 100%, rgb(0, 0, 0) 35%, rgba(0, 0, 0, 0) 100%);">
-      <div>
-        <!-- Title -->
-        <h1 id="anime-title" >Solo Leveling</h1>
-
-        <!-- Description -->
-        <p id="anime-desc" style=" padding:0px 0px 5px 27px ; color: #777; font-size: 15px; font-weight:570;">Sub | Dub • Action, Adventure, Fantasy</p>
-
-        <!-- Detailed Text -->
-        <p id="anime-text" class="text-white" style="width: 70%; padding:0px 0px 20px 27px ;">
-          They say whatever doesn’t kill you makes you stronger, but that’s not the case for the world’s weakest hunter Sung Jinwoo...
-        </p>
-
-        <!-- Button -->
-        <button class="fixed-watch-button d-none d-md-block mt-3">
-          <img src="https://cdn-icons-png.flaticon.com/128/13/13021.png" width="20" height="20" style="margin-right: 8px; vertical-align: middle;" />
-          Start Watching S1 E1
-        </button>
-      </div>
+  <!-- Anime Section-1 -->
+  <div class="anime-section mt-5">
+    <h1>Stream These 2025 Crunchyroll Anime Award Nominees for Free!</h1>
+    <p>Watch these nominees free for a limited time!</p>
+    <div class="anime-grid">
+        <div class="anime-card"><img src="crunchyrollImgs/RezeroSec.jpg" alt="Re:ZERO"><h3>Re:ZERO</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/naruto.jpg" alt="naruto"><h3>NARUTO</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/ossan.jpg" alt="ossan"><h3>OSSAN</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/alya.jpg" alt="ALYA"><h3>ALYA</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/chainsawman.jpg" alt="CHAINSAWMAN"><h3>CHAINSAWMAN</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/faraway.jpg" alt="FAR-AWAY"><h3>FAR-AWAY</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/DarlingInTheFranx.jpg" alt="DarlingInTheFranx"><h3>DarlingInTheFranx</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/masamune.jpg" alt="masamune"><h3>masamune</h3><span>Sub | Dub</span></div>
     </div>
   </div>
 </div>
 
-
-    <!-- Progress Dots -->
-    <div class="progress-indicator">
-      <span class="dot active"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
+<!-- Anime Sections 2-5 -->
+<div style="background-color: black;">
+  <div class="anime-section-2 mt-5">
+    <div class="anime-grid">
+      <div class="anime-card"><img src="crunchyrollImgs/RezeroSec.jpg" alt="Re:ZERO"><h3>Re:ZERO</h3><span>Sub | Dub</span></div>
+      <div class="anime-card"><img src="crunchyrollImgs/naruto.jpg" alt="naruto"><h3>NARUTO</h3><span>Sub | Dub</span></div>
+      <div class="anime-card"><img src="crunchyrollImgs/ossan.jpg" alt="ossan"><h3>OSSAN</h3><span>Sub | Dub</span></div>
+      <div class="anime-card"><img src="crunchyrollImgs/alya.jpg" alt="ALYA"><h3>ALYA</h3><span>Sub | Dub</span></div>
+      <div class="anime-card"><img src="crunchyrollImgs/chainsawman.jpg" alt="CHAINSAWMAN"><h3>CHAINSAWMAN</h3><span>Sub | Dub</span></div>
+      <div class="anime-card"><img src="crunchyrollImgs/faraway.jpg" alt="FAR-AWAY"><h3>FAR-AWAY</h3><span>Sub | Dub</span></div>
+      <div class="anime-card"><img src="crunchyrollImgs/DarlingInTheFranx.jpg" alt="DarlingInTheFranx"><h3>DarlingInTheFranx</h3><span>Sub | Dub</span></div>
+      <div class="anime-card"><img src="crunchyrollImgs/masamune.jpg" alt="masamune"><h3>masamune</h3><span>Sub | Dub</span></div>
     </div>
   </div>
+</div>
 
-  <!-- Scripts -->
-  <script>
-    const slides = [
-      {
-        image: "solo.jpg",
-        title: '<img src="https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=600/CurationAssets/Solo%20Leveling/SEASON%202/ULTRA-WIDE/SoloLeveling-S2-KV1-UW-Logo.png" alt="Solo Leveling" style="width: 50%;" />',
-        desc: "Sub | Dub • Action, Adventure, Fantasy",
-        text: "They say whatever doesn’t kill you makes you stronger, but that’s not the case for the world’s weakest hunter Sung Jinwoo..."
-      },
-      {
-        image: "windbreaker.jpg",
-        title: '<img src="https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=600/CurationAssets/WIND%20BREAKER/SEASON%201/ULTRA-WIDE/WindBreaker-S1-KV1-UW-Logo.png" alt="Wind Breaker" style="width: 50%;" />',
-        desc:  "Sub | Dub • Action, Adventure",
-        text: "They protect their town, their friends, and their pride. Meet the toughest delinquents with a heart in Wind Breaker."
-      },
-      {
-        image: "blackbutler.jpg",
-        title: '<img src="https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=600/CurationAssets/I%20Left%20my%20A-Rank%20Party/SEASON%201/ULTRA-WIDE/ILeftMyARankParty-S1-KV1-UW-Logo-EN.png" alt="A Rank Party" style="width:50%";"/>',
-        desc: "Sub | Dub • Action, Fantasy",
-        text: "Not every party treats you like a hero—especially when you’re a lowly red mage like Yuke..."
-      }
-    ];
+<div style="background-color: black;">
+    <div class="anime-section-2 mt-5">
+      <div class="anime-grid">
+        <div class="anime-card"><img src="crunchyrollImgs/RezeroSec.jpg" alt="Re:ZERO"><h3>Re:ZERO</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/naruto.jpg" alt="naruto"><h3>NARUTO</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/ossan.jpg" alt="ossan"><h3>OSSAN</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/alya.jpg" alt="ALYA"><h3>ALYA</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/chainsawman.jpg" alt="CHAINSAWMAN"><h3>CHAINSAWMAN</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/faraway.jpg" alt="FAR-AWAY"><h3>FAR-AWAY</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/DarlingInTheFranx.jpg" alt="DarlingInTheFranx"><h3>DarlingInTheFranx</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/masamune.jpg" alt="masamune"><h3>masamune</h3><span>Sub | Dub</span></div>
+      </div>
+    </div>
+</div>
 
-    let current = 0;
-    const dots = document.querySelectorAll(".dot");
-    const heroImage = document.getElementById("hero-image");
-    const animeTitle = document.getElementById("anime-title");
-    const animeDesc = document.getElementById("anime-desc");
-    const animeText = document.getElementById("anime-text");
+<div style="background-color: black;">
+    <div class="anime-section-2 mt-5">
+      <div class="anime-grid">
+        <div class="anime-card"><img src="crunchyrollImgs/RezeroSec.jpg" alt="Re:ZERO"><h3>Re:ZERO</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/naruto.jpg" alt="naruto"><h3>NARUTO</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/ossan.jpg" alt="ossan"><h3>OSSAN</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/alya.jpg" alt="ALYA"><h3>ALYA</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/chainsawman.jpg" alt="CHAINSAWMAN"><h3>CHAINSAWMAN</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/faraway.jpg" alt="FAR-AWAY"><h3>FAR-AWAY</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/DarlingInTheFranx.jpg" alt="DarlingInTheFranx"><h3>DarlingInTheFranx</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/masamune.jpg" alt="masamune"><h3>masamune</h3><span>Sub | Dub</span></div>
+      </div>
+    </div>
+</div>
 
-    function updateSlide() {
-      const slide = slides[current % slides.length];
+<div style="background-color: black;">
+    <div class="anime-section-2 mt-5">
+      <div class="anime-grid">
+        <div class="anime-card"><img src="crunchyrollImgs/RezeroSec.jpg" alt="Re:ZERO"><h3>Re:ZERO</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/naruto.jpg" alt="naruto"><h3>NARUTO</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/ossan.jpg" alt="ossan"><h3>OSSAN</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/alya.jpg" alt="ALYA"><h3>ALYA</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/chainsawman.jpg" alt="CHAINSAWMAN"><h3>CHAINSAWMAN</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/faraway.jpg" alt="FAR-AWAY"><h3>FAR-AWAY</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/DarlingInTheFranx.jpg" alt="DarlingInTheFranx"><h3>DarlingInTheFranx</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/masamune.jpg" alt="masamune"><h3>masamune</h3><span>Sub | Dub</span></div>
+      </div>
+    </div>
+</div>
 
-      animeTitle.classList.add("fade-out");
+<div style="background-color: black;">
+    <div class="anime-section-2 mt-5">
+      <div class="anime-grid">
+        <div class="anime-card"><img src="crunchyrollImgs/RezeroSec.jpg" alt="Re:ZERO"><h3>Re:ZERO</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/naruto.jpg" alt="naruto"><h3>NARUTO</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/ossan.jpg" alt="ossan"><h3>OSSAN</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/alya.jpg" alt="ALYA"><h3>ALYA</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/chainsawman.jpg" alt="CHAINSAWMAN"><h3>CHAINSAWMAN</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/faraway.jpg" alt="FAR-AWAY"><h3>FAR-AWAY</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/DarlingInTheFranx.jpg" alt="DarlingInTheFranx"><h3>DarlingInTheFranx</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/masamune.jpg" alt="masamune"><h3>masamune</h3><span>Sub | Dub</span></div>
+      </div>
+    </div>
+</div>
 
-      setTimeout(() => {
-        heroImage.style.backgroundImage = `url(${slide.image})`;
-        animeTitle.innerHTML = slide.title;
-        animeDesc.innerText = slide.desc;
-        animeText.innerText = slide.text;
+<!-- Footer -->
+<div class="footer-top">
+  <img src="crunchyrollImgs/yuzu.png" alt="Anime Kitty" class="footer-kitty">
+  <p class="footer-headline">Still looking for something to watch?<br><span>Check out our full library</span></p>
+  <button class="view-all-btn">VIEW ALL</button>
+</div>
 
-        animeTitle.classList.remove("fade-out");
-      }, 300);
+<footer class="footer-main">
+  <div class="container">
+    <div class="row footer-columns">
+      <div class="col-6 col-md-3 footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li>Browse Popular</li>
+          <li>Browse Simulcasts</li>
+          <li>Release Calendar</li>
+          <li>News</li>
+          <li>Games</li>
+        </ul>
+      </div>
+      <div class="col-6 col-md-3 footer-col">
+        <h4>Connect With Us</h4>
+        <ul>
+          <li>Youtube</li>
+          <li>Facebook</li>
+          <li>X</li>
+          <li>Instagram</li>
+          <li>TikTok</li>
+        </ul>
+      </div>
+      <div class="col-6 col-md-3 footer-col">
+        <h4>Crunchyroll</h4>
+        <ul>
+          <li>Start a Free Trial</li>
+          <li>About</li>
+          <li>Help Center</li>
+          <li>Terms of Use</li>
+          <li>Privacy Policy</li>
+        </ul>
+      </div>
+      <div class="col-6 col-md-3 footer-col">
+        <h4>Account</h4>
+        <ul>
+          <li>Create Account</li>
+          <li>Log In</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom text-center">
+      <p>© Crunchyroll, LLC</p>
+      <p class="footer-description">Welcome to Crunchyroll, your ultimate destination for streaming the best in anime entertainment...</p>
+    </div>
+  </div>
+</footer>
 
-      dots.forEach((dot, i) =>
-        dot.classList.toggle("active", i === current % slides.length)
-      );
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom Script -->
+<script>
+  const slides = [
+    {
+      image: "crunchyrollImgs/SoloLeveling.png",
+      title: '<img src="crunchyrollImgs/SoloLeveling-S2-KV1-UW-Logo.png" alt="Solo Leveling" style="width:50%";"/>',
+      desc: "Sub | Dub • Action, Adventure, Fantasy",
+      text: "They say whatever doesn’t kill you makes you stronger, but that’s not the case for the world’s weakest hunter Sung Jinwoo..."
+    },
+    {
+      image: "crunchyrollImgs/WindBreaker.png",
+      title: '<img src="crunchyrollImgs/WindBreaker-S1-KV1-UW-Logo.png" alt="Wind Breaker" style="width:50%";"/>',
+      desc: "Sub | Dub • Sports, Drama",
+      text: "High-speed drama unfolds as racing takes over school rivalries in a battle of speed and spirit!"
+    },
+    {
+      image: "crunchyrollImgs/BlackButler.png",
+      title: '<img src="crunchyrollImgs/BlackButlerLogo.png" alt="Black Butler" style="width:50%";"/>',
+      desc: "Sub | Dub • Action, Fantasy",
+      text: "Not every party treats you like a hero—especially when you’re a lowly red mage like Yuke..."
     }
+  ];
 
-    updateSlide();
-    setInterval(() => {
-      current = (current + 1) % slides.length;
-      updateSlide();
-    }, 4000);
-  </script>
+  let currentSlide = 0;
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  function updateHeroSlide() {
+    const hero = document.getElementById("hero-image");
+    const title = document.getElementById("anime-title");
+    const desc = document.getElementById("anime-desc");
+    const text = document.getElementById("anime-text");
+    const dots = document.querySelectorAll(".dot");
+
+    const slide = slides[currentSlide];
+    hero.style.backgroundImage = `url('${slide.image}')`;
+    title.innerHTML = slide.title;
+    desc.textContent = slide.desc;
+    text.textContent = slide.text;
+
+    dots.forEach((dot, index) => {
+      dot.classList.toggle("active", index === currentSlide);
+    });
+
+    currentSlide = (currentSlide + 1) % slides.length;
+  }
+
+  setInterval(updateHeroSlide, 5000);
+
+  // Premium Popup Toggle
+  const premiumBtn = document.querySelector(".premium-btn");
+  const premiumPopup = document.querySelector(".premium-popup");
+
+  premiumBtn.addEventListener("click", () => {
+    premiumPopup.style.display = premiumPopup.style.display === "block" ? "none" : "block";
+  });
+
+  // Close popup when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!premiumBtn.contains(e.target) && !premiumPopup.contains(e.target)) {
+      premiumPopup.style.display = "none";
+    }
+  });
+</script>
 </body>
 </html>
