@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Crunchyroll</title>
-  <link rel="icon" type="image/png" href="title logo.png" />
+  <link rel="icon" type="image/png" href="crunchyrollImgs/CrunchyrollLogo.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style>
@@ -86,10 +86,12 @@
       transition: opacity 0.4s ease-in-out;
       opacity: 1;
     }
+  
     .anime-section {
       margin: 4.5%;
       padding-top: 40%;
-      position: relative;
+      position:absolute;
+
     }
     .anime-section-2 {
       margin: 4.5%;
@@ -161,19 +163,41 @@
 
     /* Mobile Responsiveness */
     @media (max-width: 768px) {
+      .navbar-brand{
+        display: none;
+      }
       .hero {
-        height: 600px;
-        background-image: url('crunchyrollImgs/solomobile.jpg');
+        height: 700px;
         position: relative;
       }
+      .hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8));
+  pointer-events: none; /* Allows interaction with the image */
+}
       .hero-content {
-        display: none; /* Hide hero content on mobile */
+        display: none; 
       }
       .anime-section {
         display: none; /* Hide anime section on mobile */
       }
+      .mobile-anime-title{
+        position: absolute;
+        top: 75%;
+        left: 30%;
+      
+     }
+     #mobile-anime-title {
+      transition: opacity 0.4s ease-in-out;
+      opacity: 1;
+    }
       .progress-indicator {
-        top: 85%;
+        top: 95%;
         left: 50%;
         transform: translateX(-50%);
       }
@@ -201,6 +225,7 @@
       .premium-popup {
         display: none !important; /* Ensure popup is hidden on mobile */
       }
+
     }
 
     /* Desktop-Specific Button Positioning */
@@ -210,8 +235,15 @@
         left: 0;
         margin-top: 30px; /* Consistent spacing */
       }
+      .mobile-anime-title{
+      display: none;
+      }
+      
       .premium-btn, .nav-icon {
         display: inline-flex; /* Show on desktop */
+      }
+      .nav-icon-mobile{
+        display: none;
       }
     }
 
@@ -269,10 +301,26 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container-fluid px-3">
-      <a class="navbar-brand" href="#"><img src="logo.png" width="137px" alt="Crunchyroll" /></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
+
+      <a  class="nav-icon-mobile" href="#">
+        <img src="crunchyrollImgs/CrunchyrollLogo.png" width="37px"  alt="Crunchyroll" />
+      </a>
+      <a class="nav-icon-mobile" href="#" aria-label="crown" >
+        <img src="https://img.icons8.com/?size=100&id=bVB91ntF0Bzd&format=png&color=000000" width="20" height="20" alt="crown" />
+    </a>
+    <a class="nav-icon-mobile" href="#" class= aria-label="Search">
+      <img src="https://img.icons8.com/?size=100&id=132&format=png&color=FFFFFF" width="24" height="24" alt="Search" />
+    </a>
+    <a class="nav-icon-mobile" href="#" class=aria-label="User">
+      <img src="https://img.icons8.com/?size=100&id=zxB19VPoVLjK&format=png&color=FFFFFF" width="24" height="24" alt="User" />
+    </a>
+
+      <a class="navbar-brand" href="#"><img src="logo.png" width="137px" alt="Crunchyroll" /></a>
+
+    
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-3">
           <li class="nav-item"><a class="nav-link text-white" href="#">New</a></li>
@@ -286,7 +334,7 @@
         <div class="ms-auto d-flex align-items-center position-relative me-3">
           <!-- Try Free Premium -->
           <div>
-            <a href="#" class="nav-icon mx-2" aria-label="Search">
+            <a href="#" class="nav-icon mx-2" aria-label="crown">
                 <img src="https://img.icons8.com/?size=100&id=bVB91ntF0Bzd&format=png&color=000000" width="20" height="20" alt="Search" />
             </a>         
           </div>
@@ -317,7 +365,7 @@
 </nav>
 
 <!-- Hero Section -->
-<div class="hero" id="hero-image" style="background-image: url('crunchyrollImgs/SoloLeveling-cropped.png');">
+<div class="hero" id="hero-image" style="background-image: url('crunchyrollImgs/SoloLeveling.png');">
   <div class="hero-content ps-md-5">
     <h1 id="anime-title">Solo Leveling</h1>
     <p id="anime-desc">Sub | Dub • Action, Adventure, Fantasy</p>
@@ -327,7 +375,13 @@
       Start Watching S1 E1
     </button>
   </div>
-  <!-- Mobile Start Watching Button -->
+
+  <!-- Mobile Hero Content -->
+  <div class="mobile-anime-title">
+    <h1 id="mobile-anime-title">Solo Leveling</h1>
+
+
+  </div>
   <button class="btn-orange mobile-start-btn">
     <img src="https://cdn-icons-png.flaticon.com/128/13/13021.png" width="20" height="20" style="margin-right: 8px;" />
     Start Watching
@@ -340,7 +394,7 @@
 
   <!-- Anime Section-1 -->
   <div class="anime-section mt-5">
-    <h1>Stream These 2025 Crunchyroll Anime Award Nominees for Free!</h1>
+    <h1 >Stream These 2025 Crunchyroll Anime Award Nominees for Free!</h1>
     <p>Watch these nominees free for a limited time!</p>
     <div class="anime-grid">
         <div class="anime-card"><img src="crunchyrollImgs/RezeroSec.jpg" alt="Re:ZERO"><h3>Re:ZERO</h3><span>Sub | Dub</span></div>
@@ -357,6 +411,7 @@
 
 <!-- Anime Sections 2-5 -->
 <div style="background-color: black;">
+  <h2>Trending Now</h2>
   <div class="anime-section-2 mt-5">
     <div class="anime-grid">
       <div class="anime-card"><img src="crunchyrollImgs/RezeroSec.jpg" alt="Re:ZERO"><h3>Re:ZERO</h3><span>Sub | Dub</span></div>
@@ -514,30 +569,40 @@
   let currentSlide = 0;
 
   function updateHeroSlide() {
-    const hero = document.getElementById("hero-image");
-    const title = document.getElementById("anime-title");
-    const desc = document.getElementById("anime-desc");
-    const text = document.getElementById("anime-text");
-    const dots = document.querySelectorAll(".dot");
+  const hero = document.getElementById("hero-image");
+  const title = document.getElementById("anime-title");
+  const mobileTitle = document.getElementById("mobile-anime-title");
+  const desc = document.getElementById("anime-desc");
+  const text = document.getElementById("anime-text");
+  const dots = document.querySelectorAll(".dot");
 
-    const slide = slides[currentSlide];
-    hero.style.backgroundImage = `url('${slide.image}')`;
-    title.innerHTML = slide.title;
-    desc.textContent = slide.desc;
-    text.textContent = slide.text;
+  const slide = slides[currentSlide];
+  hero.style.backgroundImage = `url('${slide.image}')`;
+  title.innerHTML = slide.title;
+  mobileTitle.innerHTML = slide.title; // Update mobile title
+  desc.textContent = slide.desc;
+  text.textContent = slide.text;
 
-    dots.forEach((dot, index) => {
-      dot.classList.toggle("active", index === currentSlide);
-    });
+  dots.forEach((dot, index) => {
+    dot.classList.toggle("active", index === currentSlide);
+  });
 
-    currentSlide = (currentSlide + 1) % slides.length;
-  }
-
+  currentSlide = (currentSlide + 1) % slides.length;
+}
   setInterval(updateHeroSlide, 5000);
 
   // Premium Popup Toggle
   const premiumBtn = document.querySelector(".premium-btn");
   const premiumPopup = document.querySelector(".premium-popup");
+  const dots = document.querySelectorAll(".dot");
+dots.forEach((dot, index) => {
+  dot.addEventListener("click", () => {
+    currentSlide = index;
+    updateHeroSlide();
+  });
+});
+const slideInterval = setInterval(updateHeroSlide, 5000);
+window.addEventListener("unload", () => clearInterval(slideInterval));
 
   premiumBtn.addEventListener("click", () => {
     premiumPopup.style.display = premiumPopup.style.display === "block" ? "none" : "block";
