@@ -88,13 +88,20 @@
     }
   
     .anime-section {
-      margin: 4.5%;
-      padding-top: 40%;
-      position:absolute;
+  margin-left: 4.5%;
+  position: relative;
+  top: 51%;
+  left: 0%;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.85) 0%,     /* Dark top */
+    rgba(0, 0, 0, 0.9) 40%,     /* Darker mid */
+    rgba(0, 0, 0, 1) 100%       /* Full black at bottom */
+  );
+}
 
-    }
     .anime-section-2 {
-      margin: 4.5%;
+      margin-left: 4.5%;
       position: relative;
       background-color: black;
     }
@@ -411,8 +418,8 @@
 
 <!-- Anime Sections 2-5 -->
 <div style="background-color: black;">
-  <h2>Trending Now</h2>
   <div class="anime-section-2 mt-5">
+  <h1 >Trending  Now</h1>
     <div class="anime-grid">
       <div class="anime-card"><img src="crunchyrollImgs/RezeroSec.jpg" alt="Re:ZERO"><h3>Re:ZERO</h3><span>Sub | Dub</span></div>
       <div class="anime-card"><img src="crunchyrollImgs/naruto.jpg" alt="naruto"><h3>NARUTO</h3><span>Sub | Dub</span></div>
