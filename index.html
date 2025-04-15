@@ -150,19 +150,7 @@
     .nav-icon:hover {
       color: #ff6600;
     }
-    .premium-btn {
-      background-color: #ff6600;
-      color: black;
-      padding: 5px 10px;
-      border-radius: 3px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-weight: bold;
-    }
-    .premium-btn:hover {
-      background-color: #e65c00;
-    }
+    
 
     /* Mobile Responsiveness */
     @media (max-width: 768px) {
@@ -230,7 +218,7 @@
         right: 5%;
         top: 60px;
       }
-      .premium-btn, .nav-icon {
+      .premium, .nav-icon {
         display: none; /* Hide icons on mobile */
       }
       .premium-popup {
@@ -250,9 +238,7 @@
       display: none;
       }
       
-      .premium-btn, .nav-icon {
-        display: inline-flex; /* Show on desktop */
-      }
+  
       .nav-icon-mobile{
         display: none;
       }
@@ -316,17 +302,17 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <a  class="nav-icon-mobile" href="#">
-        <img src="crunchyrollImgs/CrunchyrollLogo.png" width="37px"  alt="Crunchyroll" />
+      <a  class="nav-icon-mobile" href="#" style="padding-left: 4%;"" >
+        <img src="crunchyrollImgs/CrunchyrollLogo.png" width="34px"  alt="Crunchyroll" />
       </a>
-      <a class="nav-icon-mobile" href="#" aria-label="crown" >
+      <a class="nav-icon-mobile" href="#" aria-label="crown" style="padding-left: 21%;" >
         <img src="https://img.icons8.com/?size=100&id=bVB91ntF0Bzd&format=png&color=000000" width="20" height="20" alt="crown" />
     </a>
-    <a class="nav-icon-mobile" href="#" class= aria-label="Search">
-      <img src="https://img.icons8.com/?size=100&id=132&format=png&color=FFFFFF" width="24" height="24" alt="Search" />
+    <a class="nav-icon-mobile" href="#" class= aria-label="Search" style="padding-left: 7%;">
+      <img src="https://img.icons8.com/?size=100&id=132&format=png&color=FFFFFF" width="20" height="20" alt="Search" />
     </a>
-    <a class="nav-icon-mobile" href="#" class=aria-label="User">
-      <img src="https://img.icons8.com/?size=100&id=zxB19VPoVLjK&format=png&color=FFFFFF" width="24" height="24" alt="User" />
+    <a class="nav-icon-mobile" href="#" class=aria-label="User" style="padding-left: 7%;">
+      <img src="https://img.icons8.com/?size=100&id=zxB19VPoVLjK&format=png&color=FFFFFF" width="20" height="20" alt="User" />
     </a>
 
       <a class="navbar-brand" href="#"><img src="logo.png" width="137px" alt="Crunchyroll" /></a>
@@ -345,13 +331,13 @@
         <div class="ms-auto d-flex align-items-center position-relative me-3">
           <!-- Try Free Premium -->
           <div>
-            <a href="#" class="nav-icon mx-2" aria-label="crown">
+            <a href="#" class="nav-icon mx-2 " aria-label="crown" type="button" id="premium">
                 <img src="https://img.icons8.com/?size=100&id=bVB91ntF0Bzd&format=png&color=000000" width="20" height="20" alt="Search" />
             </a>         
           </div>
           <div>
-            <p style="color: #6bf708; font-size: x-small; margin: 0; padding: 0;">TRY FREE</p>
-            <p style="font-size: x-small; margin: 0; padding: 0;">PREMIUM</p>
+            <p type="button" style="color: #6bf708; font-size: x-small; margin: 0; padding: 0;">TRY FREE</p>
+            <p type="button" style="font-size: x-small; margin: 0; padding: 0;">PREMIUM</p>
           </div>
           <!-- Premium Popup -->
           <div class="premium-popup">
@@ -389,7 +375,7 @@
 
   <!-- Mobile Hero Content -->
   <div class="mobile-anime-title">
-    <h1 id="mobile-anime-title">Solo Leveling</h1>
+    <h1 id="mobile-anime-title"></h1>
 
 
   </div>
@@ -401,11 +387,16 @@
     <span class="dot active"></span>
     <span class="dot"></span>
     <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+
+
   </div>
 
   <!-- Anime Section-1 -->
   <div class="anime-section mt-5">
-    <h1 >Stream These 2025 Crunchyroll Anime Award Nominees for Free!</h1>
+    <h1 >Stream These 2025 Crunchyroll Trendings</h1>
     <p>Watch these nominees free for a limited time!</p>
     <div class="anime-grid">
         <div class="anime-card"><img src="crunchyrollImgs/RezeroSec.jpg" alt="Re:ZERO"><h3>Re:ZERO</h3><span>Sub | Dub</span></div>
@@ -425,14 +416,14 @@
   <div class="anime-section-2 mt-5">
   <h1 >Trending  Now</h1>
     <div class="anime-grid">
-      <div class="anime-card"><img src="crunchyrollImgs/RezeroSec.jpg" alt="Re:ZERO"><h3>Re:ZERO</h3><span>Sub | Dub</span></div>
-      <div class="anime-card"><img src="crunchyrollImgs/naruto.jpg" alt="naruto"><h3>NARUTO</h3><span>Sub | Dub</span></div>
-      <div class="anime-card"><img src="crunchyrollImgs/ossan.jpg" alt="ossan"><h3>OSSAN</h3><span>Sub | Dub</span></div>
-      <div class="anime-card"><img src="crunchyrollImgs/alya.jpg" alt="ALYA"><h3>ALYA</h3><span>Sub | Dub</span></div>
-      <div class="anime-card"><img src="crunchyrollImgs/chainsawman.jpg" alt="CHAINSAWMAN"><h3>CHAINSAWMAN</h3><span>Sub | Dub</span></div>
-      <div class="anime-card"><img src="crunchyrollImgs/faraway.jpg" alt="FAR-AWAY"><h3>FAR-AWAY</h3><span>Sub | Dub</span></div>
-      <div class="anime-card"><img src="crunchyrollImgs/DarlingInTheFranx.jpg" alt="DarlingInTheFranx"><h3>DarlingInTheFranx</h3><span>Sub | Dub</span></div>
-      <div class="anime-card"><img src="crunchyrollImgs/masamune.jpg" alt="masamune"><h3>masamune</h3><span>Sub | Dub</span></div>
+      <div class="anime-card"><img src="crunchyrollImgs/100girlfriends.jpg" alt="Re:ZERO"><h3>Re:ZERO</h3><span>Sub | Dub</span></div>
+      <div class="anime-card"><img src="crunchyrollImgs/a1-zom100.jpg" alt="naruto"><h3>NARUTO</h3><span>Sub | Dub</span></div>
+      <div class="anime-card"><img src="crunchyrollImgs/aterrifiedteacher.jpg" alt="ossan"><h3>OSSAN</h3><span>Sub | Dub</span></div>
+      <div class="anime-card"><img src="crunchyrollImgs/gintama.jpg" alt="ALYA"><h3>ALYA</h3><span>Sub | Dub</span></div>
+      <div class="anime-card"><img src="crunchyrollImgs/bofuri.jpg" alt="CHAINSAWMAN"><h3>CHAINSAWMAN</h3><span>Sub | Dub</span></div>
+      <div class="anime-card"><img src="crunchyrollImgs/welcomtojapan.jpg" alt="FAR-AWAY"><h3>FAR-AWAY</h3><span>Sub | Dub</span></div>
+      <div class="anime-card"><img src="crunchyrollImgs/thegreatcleric.jpe" alt="DarlingInTheFranx"><h3>DarlingInTheFranx</h3><span>Sub | Dub</span></div>
+      <div class="anime-card"><img src="crunchyrollImgs/headhunted.jpg" alt="masamune"><h3>masamune</h3><span>Sub | Dub</span></div>
     </div>
   </div>
 </div>
@@ -440,14 +431,14 @@
 <div style="background-color: black;">
     <div class="anime-section-2 mt-5">
       <div class="anime-grid">
-        <div class="anime-card"><img src="crunchyrollImgs/RezeroSec.jpg" alt="Re:ZERO"><h3>Re:ZERO</h3><span>Sub | Dub</span></div>
-        <div class="anime-card"><img src="crunchyrollImgs/naruto.jpg" alt="naruto"><h3>NARUTO</h3><span>Sub | Dub</span></div>
-        <div class="anime-card"><img src="crunchyrollImgs/ossan.jpg" alt="ossan"><h3>OSSAN</h3><span>Sub | Dub</span></div>
-        <div class="anime-card"><img src="crunchyrollImgs/alya.jpg" alt="ALYA"><h3>ALYA</h3><span>Sub | Dub</span></div>
-        <div class="anime-card"><img src="crunchyrollImgs/chainsawman.jpg" alt="CHAINSAWMAN"><h3>CHAINSAWMAN</h3><span>Sub | Dub</span></div>
-        <div class="anime-card"><img src="crunchyrollImgs/faraway.jpg" alt="FAR-AWAY"><h3>FAR-AWAY</h3><span>Sub | Dub</span></div>
-        <div class="anime-card"><img src="crunchyrollImgs/DarlingInTheFranx.jpg" alt="DarlingInTheFranx"><h3>DarlingInTheFranx</h3><span>Sub | Dub</span></div>
-        <div class="anime-card"><img src="crunchyrollImgs/masamune.jpg" alt="masamune"><h3>masamune</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/spyxfamily.jpg" alt="Re:ZERO"><h3>Re:ZERO</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/tomchan.jpg" alt="naruto"><h3>NARUTO</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/rentagirlfriend.jpg" alt="ossan"><h3>OSSAN</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/ossan.jpg" alt="ALYA"><h3>ALYA</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/gintamaveryfinal.jpg" alt="CHAINSAWMAN"><h3>CHAINSAWMAN</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/welcomtojapan.jpg" alt="FAR-AWAY"><h3>FAR-AWAY</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/kamikatsu.jpe" alt="DarlingInTheFranx"><h3>DarlingInTheFranx</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/mashle.jpg" alt="masamune"><h3>masamune</h3><span>Sub | Dub</span></div>
       </div>
     </div>
 </div>
@@ -470,14 +461,14 @@
 <div style="background-color: black;">
     <div class="anime-section-2 mt-5">
       <div class="anime-grid">
-        <div class="anime-card"><img src="crunchyrollImgs/RezeroSec.jpg" alt="Re:ZERO"><h3>Re:ZERO</h3><span>Sub | Dub</span></div>
-        <div class="anime-card"><img src="crunchyrollImgs/naruto.jpg" alt="naruto"><h3>NARUTO</h3><span>Sub | Dub</span></div>
-        <div class="anime-card"><img src="crunchyrollImgs/ossan.jpg" alt="ossan"><h3>OSSAN</h3><span>Sub | Dub</span></div>
-        <div class="anime-card"><img src="crunchyrollImgs/alya.jpg" alt="ALYA"><h3>ALYA</h3><span>Sub | Dub</span></div>
-        <div class="anime-card"><img src="crunchyrollImgs/chainsawman.jpg" alt="CHAINSAWMAN"><h3>CHAINSAWMAN</h3><span>Sub | Dub</span></div>
-        <div class="anime-card"><img src="crunchyrollImgs/faraway.jpg" alt="FAR-AWAY"><h3>FAR-AWAY</h3><span>Sub | Dub</span></div>
-        <div class="anime-card"><img src="crunchyrollImgs/DarlingInTheFranx.jpg" alt="DarlingInTheFranx"><h3>DarlingInTheFranx</h3><span>Sub | Dub</span></div>
-        <div class="anime-card"><img src="crunchyrollImgs/masamune.jpg" alt="masamune"><h3>masamune</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/100girlfriends.jpg" alt="Re:ZERO"><h3>Re:ZERO</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/a1-zom100.jpg" alt="naruto"><h3>NARUTO</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/aterrifiedteacher.jpg" alt="ossan"><h3>OSSAN</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/gintama.jpg" alt="ALYA"><h3>ALYA</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/bofuri.jpg" alt="CHAINSAWMAN"><h3>CHAINSAWMAN</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/welcomtojapan.jpg" alt="FAR-AWAY"><h3>FAR-AWAY</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/thegreatcleric.jpe" alt="DarlingInTheFranx"><h3>DarlingInTheFranx</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/headhunted.jpg" alt="masamune"><h3>masamune</h3><span>Sub | Dub</span></div>
       </div>
     </div>
 </div>
@@ -485,17 +476,18 @@
 <div style="background-color: black;">
     <div class="anime-section-2 mt-5">
       <div class="anime-grid">
-        <div class="anime-card"><img src="crunchyrollImgs/RezeroSec.jpg" alt="Re:ZERO"><h3>Re:ZERO</h3><span>Sub | Dub</span></div>
-        <div class="anime-card"><img src="crunchyrollImgs/naruto.jpg" alt="naruto"><h3>NARUTO</h3><span>Sub | Dub</span></div>
-        <div class="anime-card"><img src="crunchyrollImgs/ossan.jpg" alt="ossan"><h3>OSSAN</h3><span>Sub | Dub</span></div>
-        <div class="anime-card"><img src="crunchyrollImgs/alya.jpg" alt="ALYA"><h3>ALYA</h3><span>Sub | Dub</span></div>
-        <div class="anime-card"><img src="crunchyrollImgs/chainsawman.jpg" alt="CHAINSAWMAN"><h3>CHAINSAWMAN</h3><span>Sub | Dub</span></div>
-        <div class="anime-card"><img src="crunchyrollImgs/faraway.jpg" alt="FAR-AWAY"><h3>FAR-AWAY</h3><span>Sub | Dub</span></div>
-        <div class="anime-card"><img src="crunchyrollImgs/DarlingInTheFranx.jpg" alt="DarlingInTheFranx"><h3>DarlingInTheFranx</h3><span>Sub | Dub</span></div>
-        <div class="anime-card"><img src="crunchyrollImgs/masamune.jpg" alt="masamune"><h3>masamune</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/spyxfamily.jpg" alt="Re:ZERO"><h3>Re:ZERO</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/tomchan.jpg" alt="naruto"><h3>NARUTO</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/rentagirlfriend.jpg" alt="ossan"><h3>OSSAN</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/ossan.jpg" alt="ALYA"><h3>ALYA</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/gintamaveryfinal.jpg" alt="CHAINSAWMAN"><h3>CHAINSAWMAN</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/welcomtojapan.jpg" alt="FAR-AWAY"><h3>FAR-AWAY</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/kamikatsu.jpe" alt="DarlingInTheFranx"><h3>DarlingInTheFranx</h3><span>Sub | Dub</span></div>
+        <div class="anime-card"><img src="crunchyrollImgs/mashle.jpg" alt="masamune"><h3>masamune</h3><span>Sub | Dub</span></div>
       </div>
     </div>
 </div>
+
 
 <!-- Footer -->
 <div class="footer-top">
@@ -574,6 +566,18 @@
       title: '<img src="crunchyrollImgs/BlackButlerLogo.png" alt="Black Butler" style="width:50%";"/>',
       desc: "Sub | Dub • Action, Fantasy",
       text: "Not every party treats you like a hero—especially when you’re a lowly red mage like Yuke..."
+    },
+    {
+      image: "crunchyrollImgs/DemonSlayer-InfinityMovie-.png",
+      title: '<img src="crunchyrollImgs/DemonSlayer-InfinityMovie-UW-Logo.png" alt="Black Butler" style="width:50%";"/>',
+      desc: "Sub | Dub • Action, Fantasy",
+      text: "Not every party treats you like a hero—especially when you’re a lowly red mage like Yuke..."
+    },
+    {
+      image: "crunchyrollImgs/ILeftMyARankParty.png",
+      title: '<img src="crunchyrollImgs/ILeftMyARankParty-S1-KV1-UW-Logo-EN.png" alt="Black Butler" style="width:50%";"/>',
+      desc: "Sub | Dub • Action, Fantasy",
+      text: "Not every party treats you like a hero—especially when you’re a lowly red mage like Yuke..."
     }
   ];
 
@@ -603,7 +607,7 @@
   setInterval(updateHeroSlide, 5000);
 
   // Premium Popup Toggle
-  const premiumBtn = document.querySelector(".premium-btn");
+  const premium = document.querySelector(".premium");
   const premiumPopup = document.querySelector(".premium-popup");
   const dots = document.querySelectorAll(".dot");
 dots.forEach((dot, index) => {
@@ -621,7 +625,7 @@ window.addEventListener("unload", () => clearInterval(slideInterval));
 
   // Close popup when clicking outside
   document.addEventListener("click", (e) => {
-    if (!premiumBtn.contains(e.target) && !premiumPopup.contains(e.target)) {
+    if (!premium.contains(e.target) && !premiumPopup.contains(e.target)) {
       premiumPopup.style.display = "none";
     }
   });
