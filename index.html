@@ -61,14 +61,75 @@
       height: 10px;
       background-color: #777;
       border-radius: 5px;
-      transition: background-color 0.3s;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .dot::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background-color: #ff6600;
+      transition: none;
+    }
+    .dot.active::before {
+      animation: fillOrange 5s linear forwards;
+    }
+    .dot:not(.active)::before {
+      animation: clearFill 5s linear forwards;
+    }
+    @keyframes fillOrange {
+      0% {
+        width: 0;
+      }
+      100% {
+        width: 100%;
+      }
+    }
+    @keyframes clearFill {
+      0% {
+        width: 100%;
+      }
+      100% {
+        width: 0;
+      }
     }
     .dot.active {
-      background-color: #ff6600;
+      animation: enlargeDot 0.6s ease-in-out forwards;
+    }
+    @keyframes enlargeDot {
+      0% {
+        width: 25px;
+        height: 7px;
+      }
+      50% {
+        width: 40px;
+        height: 12px;
+      }
+      100% {
+        width: 35px;
+        height: 10px;
+      }
+    }
+    .dot:not(.active) {
+      animation: shrinkDot 0.6s ease-in-out forwards;
+    }
+    @keyframes shrinkDot {
+      0% {
+        width: 35px;
+        height: 15px;
+      }
+      100% {
+        width: 25px;
+        height: 10px;
+      }
     }
     .premium-popup {
       position: absolute;
-      top: 40px;
+      top: 50px;
       right: 0;
       left: auto;
       transform: none;
@@ -79,23 +140,31 @@
       text-align: center;
       font-family: Arial, sans-serif;
       display: none;
+      opacity: 0;
       transition: opacity 0.3s ease-in-out;
       z-index: 10;
+    }
+    .premium-popup.show {
+      display: block;
+      opacity: 1;
+    }
+    .premium-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
     #anime-title {
       transition: opacity 0.4s ease-in-out;
       opacity: 1;
     }
-  
     .anime-section {
-  margin-left: 4.5%;
-  position: relative;
-  top: 51%;
-  left: 0%;
-  backdrop-filter: blur(8px); /* 🔥 Adds the blur effect */
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8));
-}
-
+      margin-left: 4.5%;
+      position: relative;
+      top: 51%;
+      left: 0%;
+      backdrop-filter: blur(8px);
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8));
+    }
     .anime-section-2 {
       margin-left: 4.5%;
       position: relative;
@@ -137,10 +206,8 @@
       background-image: url('images/hero-full.jpg');
     }
     .mobile-start-btn {
-      display: none; /* Hidden by default (visible only on mobile) */
+      display: none;
     }
-
-    /* Navbar Icon Styling */
     .nav-icon {
       color: white;
       font-size: 1.5rem;
@@ -150,67 +217,57 @@
     .nav-icon:hover {
       color: #ff6600;
     }
-    
-
-    /* Mobile Responsiveness */
     @media (max-width: 768px) {
-      .navbar-brand{
+      .navbar-brand {
         display: none;
       }
       .hero {
         height: 700px;
         position: relative;
         z-index: 1;
-
       }
-
       .hero::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.3),
-    rgba(0, 0, 0, 0.9)
-  ); /* Smooth dim to black */
-  z-index: -1; /* Push behind content */
-  pointer-events: none;
-}
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.9));
+        z-index: -1;
+        pointer-events: none;
+      }
       .hero-content {
-        display: none; 
+        display: none;
       }
       .anime-section {
-        display: none; /* Hide anime section on mobile */
+        display: none;
       }
-      .mobile-anime-title{
+      .mobile-anime-title {
         position: absolute;
-        top: 70%;
+        top: 75%;
         left: 30%;
-      
-     }
-     #mobile-anime-title {
-      transition: opacity 0.4s ease-in-out;
-      opacity: 1;
-    }
+      }
+      #mobile-anime-title {
+        transition: opacity 0.4s ease-in-out;
+        opacity: 1;
+      }
       .progress-indicator {
         top: 95%;
         left: 50%;
         transform: translateX(-50%);
       }
       .mobile-start-btn {
-        display: flex; /* Show button on mobile */
+        display: flex;
         position: absolute;
-        bottom: 40px; /* Adjusted for better spacing */
+        bottom: 40px;
         left: 50%;
         transform: translateX(-50%);
         z-index: 3;
         padding: 8px 16px;
         font-size: 0.9rem;
       }
-      .anime-section-2 {
+      .anime-section- NRL {
         margin: 20px 10px;
       }
       .premium-popup {
@@ -219,32 +276,25 @@
         top: 60px;
       }
       .premium, .nav-icon {
-        display: none; /* Hide icons on mobile */
+        display: none;
       }
       .premium-popup {
-        display: none !important; /* Ensure popup is hidden on mobile */
+        display: none !important;
       }
-
     }
-
-    /* Desktop-Specific Button Positioning */
     @media (min-width: 769px) {
       .hero-content .btn-orange {
-        position: relative; /* Align within hero-content */
+        position: relative;
         left: 0;
-        margin-top: 30px; /* Consistent spacing */
+        margin-top: 30px;
       }
-      .mobile-anime-title{
-      display: none;
+      .mobile-anime-title {
+        display: none;
       }
-      
-  
-      .nav-icon-mobile{
+      .nav-icon-mobile {
         display: none;
       }
     }
-
-    /* Footer Styles */
     .footer-top {
       background-color: black;
       color: white;
@@ -294,30 +344,25 @@
   </style>
 </head>
 <body>
-
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container-fluid px-3">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
-
-      <a  class="nav-icon-mobile" href="#" style="padding-left: 4%;"" >
-        <img src="crunchyrollImgs/CrunchyrollLogo.png" width="34px"  alt="Crunchyroll" />
+      <a class="nav-icon-mobile" href="#" style="padding-left: 7%;">
+        <img src="crunchyrollImgs/CrunchyrollLogo.png" width="28px" alt="Crunchyroll" />
       </a>
-      <a class="nav-icon-mobile" href="#" aria-label="crown" style="padding-left: 21%;" >
+      <a class="nav-icon-mobile" href="#" aria-label="crown" style="padding-left: 35%;">
         <img src="https://img.icons8.com/?size=100&id=bVB91ntF0Bzd&format=png&color=000000" width="20" height="20" alt="crown" />
-    </a>
-    <a class="nav-icon-mobile" href="#" class= aria-label="Search" style="padding-left: 7%;">
-      <img src="https://img.icons8.com/?size=100&id=132&format=png&color=FFFFFF" width="20" height="20" alt="Search" />
-    </a>
-    <a class="nav-icon-mobile" href="#" class=aria-label="User" style="padding-left: 7%;">
-      <img src="https://img.icons8.com/?size=100&id=zxB19VPoVLjK&format=png&color=FFFFFF" width="20" height="20" alt="User" />
-    </a>
-
+      </a>
+      <a class="nav-icon-mobile" href="#" aria-label="Search" style="padding-left: 7%;">
+        <img src="https://img.icons8.com/?size=100&id=132&format=png&color=FFFFFF" width="20" height="20" alt="Search" />
+      </a>
+      <a class="nav-icon-mobile" href="#" aria-label="User" style="padding-left: 7%;">
+        <img src="https://img.icons8.com/?size=100&id=zxB19VPoVLjK&format=png&color=FFFFFF" width="20" height="20" alt="User" />
+      </a>
       <a class="navbar-brand" href="#"><img src="logo.png" width="137px" alt="Crunchyroll" /></a>
-
-    
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-3">
           <li class="nav-item"><a class="nav-link text-white" href="#">New</a></li>
@@ -329,38 +374,34 @@
           <li class="nav-item"><a class="nav-link text-white" href="#">News</a></li>
         </ul>
         <div class="ms-auto d-flex align-items-center position-relative me-3">
-          <!-- Try Free Premium -->
-          <div>
-            <a href="#" class="nav-icon mx-2 " aria-label="crown" type="button" id="premium">
-                <img src="https://img.icons8.com/?size=100&id=bVB91ntF0Bzd&format=png&color=000000" width="20" height="20" alt="Search" />
-            </a>         
+          <div class="premium-container">
+            <div>
+              <a href="#" class="nav-icon mx-2" aria-label="crown" id="premium" >
+                <img src="https://img.icons8.com/?size=100&id=bVB91ntF0Bzd&format=png&color=000000" width="20" height="20" alt="Premium" />
+              </a>
+            </div>
+            <div type="button">
+              <p style="color: #6bf708; font-size: x-small; margin: 0;padding-left:2%;">TRY FREE</p>
+              <p style="font-size: x-small; margin: 0; padding-left:2%">PREMIUM</p>
+            </div>
+            <div class="premium-popup">
+              <h3>👑 7-Day Free Trial</h3>
+              <p>Premium access includes unlimited anime, no ads, and new episodes shortly after they air in Japan. Try it now!</p>
+            </div>
           </div>
-          <div>
-            <p type="button" style="color: #6bf708; font-size: x-small; margin: 0; padding: 0;">TRY FREE</p>
-            <p type="button" style="font-size: x-small; margin: 0; padding: 0;">PREMIUM</p>
-          </div>
-          <!-- Premium Popup -->
-          <div class="premium-popup">
-            <h3>👑 7-Day Free Trial</h3>
-            <p>Premium access includes unlimited anime, no ads, and new episodes shortly after they air in Japan. Try it now!</p>
-          </div>
-          <!-- Search Icon (Icons8) -->
-          <a href="#" class="nav-icon mx-2" aria-label="Search" style="padding-left: 7%;">
+          <a href="#" class="nav-icon mx-2" aria-label="Search" style="padding-left:5%;">
             <img src="https://img.icons8.com/?size=100&id=132&format=png&color=FFFFFF" width="24" height="24" alt="Search" />
           </a>
-          <!-- Bookmarks Icon -->
-          <a href="#" class="nav-icon mx-2" aria-label="Bookmarks" style="padding-left: 4%;">
-            <img src="https://img.icons8.com/?size=100&id=gjG2n7mGwI9D&format=png&color=FFFFFF" width="21" height="21" alt="bookmarks" />
+          <a href="#" class="nav-icon mx-2" aria-label="Bookmarks" style="padding-left: 3%;">
+            <img src="https://img.icons8.com/?size=100&id=gjG2n7mGwI9D&format=png&color=FFFFFF" width="21" height="21" alt="Bookmarks" />
           </a>
-          <!-- User Menu Icon -->
-          <a href="#" class="nav-icon mx-2" aria-label="User" style="padding-left: 4%;">
+          <a href="#" class="nav-icon mx-2" aria-label="User" style="padding-left: 3%;">
             <img src="https://img.icons8.com/?size=100&id=zxB19VPoVLjK&format=png&color=FFFFFF" width="24" height="24" alt="User" />
           </a>
         </div>
       </div>
     </div>
 </nav>
-
 <!-- Hero Section -->
 <div class="hero" id="hero-image" style="background-image: url('crunchyrollImgs/SoloLeveling.png');">
   <div class="hero-content ps-md-5">
@@ -372,31 +413,22 @@
       Start Watching S1 E1
     </button>
   </div>
-
-  <!-- Mobile Hero Content -->
   <div class="mobile-anime-title">
     <h1 id="mobile-anime-title"></h1>
-
-
   </div>
   <button class="btn-orange mobile-start-btn">
     <img src="https://cdn-icons-png.flaticon.com/128/13/13021.png" width="20" height="20" style="margin-right: 8px;" />
     Start Watching
-  </button>
+    </button>
   <div class="progress-indicator" id="dots">
     <span class="dot active"></span>
     <span class="dot"></span>
     <span class="dot"></span>
     <span class="dot"></span>
     <span class="dot"></span>
-    <span class="dot"></span>
-
-
   </div>
-
-  <!-- Anime Section-1 -->
   <div class="anime-section mt-5">
-    <h1 >Stream These 2025 Crunchyroll Trendings</h1>
+    <h1>Stream These 2025 Crunchyroll Trendings</h1>
     <p>Watch these nominees free for a limited time!</p>
     <div class="anime-grid">
         <div class="anime-card"><img src="crunchyrollImgs/RezeroSec.jpg" alt="Re:ZERO"><h3>Re:ZERO</h3><span>Sub | Dub</span></div>
@@ -410,11 +442,10 @@
     </div>
   </div>
 </div>
-
 <!-- Anime Sections 2-5 -->
 <div style="background-color: black;">
   <div class="anime-section-2 mt-5">
-  <h1 >Trending  Now</h1>
+    <h1>Trending Now</h1>
     <div class="anime-grid">
       <div class="anime-card"><img src="crunchyrollImgs/100girlfriends.jpg" alt="Re:ZERO"><h3>Re:ZERO</h3><span>Sub | Dub</span></div>
       <div class="anime-card"><img src="crunchyrollImgs/a1-zom100.jpg" alt="naruto"><h3>NARUTO</h3><span>Sub | Dub</span></div>
@@ -427,7 +458,6 @@
     </div>
   </div>
 </div>
-
 <div style="background-color: black;">
     <div class="anime-section-2 mt-5">
       <div class="anime-grid">
@@ -442,7 +472,6 @@
       </div>
     </div>
 </div>
-
 <div style="background-color: black;">
     <div class="anime-section-2 mt-5">
       <div class="anime-grid">
@@ -457,7 +486,6 @@
       </div>
     </div>
 </div>
-
 <div style="background-color: black;">
     <div class="anime-section-2 mt-5">
       <div class="anime-grid">
@@ -472,7 +500,6 @@
       </div>
     </div>
 </div>
-
 <div style="background-color: black;">
     <div class="anime-section-2 mt-5">
       <div class="anime-grid">
@@ -487,15 +514,12 @@
       </div>
     </div>
 </div>
-
-
 <!-- Footer -->
 <div class="footer-top">
   <img src="crunchyrollImgs/yuzu.png" alt="Anime Kitty" class="footer-kitty">
   <p class="footer-headline">Still looking for something to watch?<br><span>Check out our full library</span></p>
   <button class="view-all-btn">VIEW ALL</button>
 </div>
-
 <footer class="footer-main">
   <div class="container">
     <div class="row footer-columns">
@@ -543,7 +567,6 @@
     </div>
   </div>
 </footer>
-
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Custom Script -->
@@ -580,55 +603,51 @@
       text: "Not every party treats you like a hero—especially when you’re a lowly red mage like Yuke..."
     }
   ];
-
   let currentSlide = 0;
-
+  let slideInterval;
   function updateHeroSlide() {
-  const hero = document.getElementById("hero-image");
-  const title = document.getElementById("anime-title");
-  const mobileTitle = document.getElementById("mobile-anime-title");
-  const desc = document.getElementById("anime-desc");
-  const text = document.getElementById("anime-text");
+    const hero = document.getElementById("hero-image");
+    const title = document.getElementById("anime-title");
+    const mobileTitle = document.getElementById("mobile-anime-title");
+    const desc = document.getElementById("anime-desc");
+    const text = document.getElementById("anime-text");
+    const dots = document.querySelectorAll(".dot");
+    const slide = slides[currentSlide];
+    hero.style.backgroundImage = `url('${slide.image}')`;
+    title.innerHTML = slide.title;
+    mobileTitle.innerHTML = slide.title;
+    desc.textContent = slide.desc;
+    text.textContent = slide.text;
+    dots.forEach((dot, index) => {
+      dot.classList.toggle("active", index === currentSlide);
+    });
+  }
+  function startSlideShow() {
+    clearInterval(slideInterval);
+    slideInterval = setInterval(() => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      updateHeroSlide();
+    }, 5000);
+  }
+  updateHeroSlide();
+  startSlideShow();
   const dots = document.querySelectorAll(".dot");
-
-  const slide = slides[currentSlide];
-  hero.style.backgroundImage = `url('${slide.image}')`;
-  title.innerHTML = slide.title;
-  mobileTitle.innerHTML = slide.title; // Update mobile title
-  desc.textContent = slide.desc;
-  text.textContent = slide.text;
-
   dots.forEach((dot, index) => {
-    dot.classList.toggle("active", index === currentSlide);
+    dot.addEventListener("click", () => {
+      currentSlide = index;
+      updateHeroSlide();
+      startSlideShow();
+    });
   });
-
-  currentSlide = (currentSlide + 1) % slides.length;
-}
-  setInterval(updateHeroSlide, 5000);
-
-  // Premium Popup Toggle
-  const premium = document.querySelector(".premium");
+  const premiumContainer = document.querySelector(".premium-container");
   const premiumPopup = document.querySelector(".premium-popup");
-  const dots = document.querySelectorAll(".dot");
-dots.forEach((dot, index) => {
-  dot.addEventListener("click", () => {
-    currentSlide = index;
-    updateHeroSlide();
+  premiumContainer.addEventListener("mouseover", () => {
+    premiumPopup.classList.add("show");
   });
-});
-const slideInterval = setInterval(updateHeroSlide, 5000);
-window.addEventListener("unload", () => clearInterval(slideInterval));
-
-  premiumBtn.addEventListener("click", () => {
-    premiumPopup.style.display = premiumPopup.style.display === "block" ? "none" : "block";
+  premiumContainer.addEventListener("mouseout", () => {
+    premiumPopup.classList.remove("show");
   });
-
-  // Close popup when clicking outside
-  document.addEventListener("click", (e) => {
-    if (!premium.contains(e.target) && !premiumPopup.contains(e.target)) {
-      premiumPopup.style.display = "none";
-    }
-  });
+  window.addEventListener("unload", () => clearInterval(slideInterval));
 </script>
 </body>
 </html>
